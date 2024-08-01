@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import ReviewList from "./components/ReviewList/ReviewList";
+import ReviewForm from "./components/ReviewForm/ReviewForm";
+import EditReview from "./components/EditReview/EditReview";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<ReviewList />} />
+          <Route path="/new" element={<ReviewForm />} />
+          <Route path="/edit/:id" element={<EditReview />} />
+        </Routes>
+      </Router>
+      <ToastContainer
+        autoClose={5000}
+        className="toast-notification"
+        closeOnClick={false}
+        position={"bottom-right"}
+        hideProgressBar={true}
+      />
+    </>
   );
-}
+};
 
 export default App;
